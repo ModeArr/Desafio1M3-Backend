@@ -5,7 +5,8 @@ import { addCartCtrl,
     addProductToCartCtrl,
     deleteProductCartCtrl,
     editProductQuantityCtrl,
-    deleteAllCartProductsCtrl } from "../controllers/carts.controller.js"
+    deleteAllCartProductsCtrl,
+    buyCartCtrl } from "../controllers/carts.controller.js"
 
 const router = Router()
 
@@ -18,6 +19,8 @@ router.post("/:cid/product/:pid", authMdw(['USER', 'ADMIN']), addProductToCartCt
 router.delete("/:cid/product/:pid", authMdw(['USER', 'ADMIN']), deleteProductCartCtrl)
 
 router.put("/:cid/product/:pid", authMdw(['USER', 'ADMIN']), editProductQuantityCtrl)
+
+router.post("/:cid/purchase", authMdw(['USER', 'ADMIN']), buyCartCtrl)
 
 router.delete("/:cid", authMdw(['USER', 'ADMIN']), deleteAllCartProductsCtrl)
 

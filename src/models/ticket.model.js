@@ -13,22 +13,11 @@ const ticketSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  cart: {
-    type: Schema.Types.ObjectId,
-    ref: 'cart',
-    required: true
-  },
   purchaser: {
-    type: Schema.Types.ObjectId,
-    ref: 'user',
+    type: String,
     required: true
   },
 });
 
-userSchema.pre('findOne', function () {
-  this.populate('cart.carts')
-  this.populate('purchaser.user')
-})
-
-const ticketModel = model(collection, userSchema);
+const ticketModel = model(collection, ticketSchema);
 export default ticketModel;
